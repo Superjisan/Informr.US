@@ -1,0 +1,27 @@
+{
+  "name": "inform-ru",
+  "version": "0.0.1",
+  "description": "An application that allows people to inform themselves of their state legislators in a fun way",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Superjisan/InformRU.git"
+  },
+  "keywords": [
+    "states",
+    "node",
+    "react",
+    "sunlight",
+    "geocoding",
+    "quiz"
+  ],
+  "author": "Jisan Zaman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Superjisan/InformRU/issues"
+  },
+  "homepage": "https://github.com/Superjisan/InformRU#readme"
+}
