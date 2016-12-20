@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="An application that allows people to inform themselves of their state legislators in a fun way">
+        <meta name="author" content="Jisan Zaman">
+        <title>InformRU - How Informed are you?</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #map {
+                width: 100%;
+                height: 400px;
+            }
+
+            .address-error-text{
+                background-color: rgb(161, 57, 59);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Inform R U</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="./index.html">Get Legislators</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <div class="container">
+
+            <!-- Portfolio Item Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Your Address
+                        <small>Type in your address and we'll get you your legislators</small>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-horizontal" role="form">
+                        <fieldset>
+
+                          <!-- Form Name -->
+                          <legend>Address Details</legend>
+
+                          <div class="form-group hidden address-error">
+                            <div class="col-sm-12 address-error-text form-control">
+                              Please fill out all of the fields for address.
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="address1">Address</label>
+                            <div class="col-sm-10">
+                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control">
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="city">City</label>
+                            <div class="col-sm-10">
+                              <input id="city" type="text" placeholder="City" class="form-control" value="Arlington">
+                            </div>
+                          </div>
+
+                          <!-- Text input-->
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="state">State</label>
+                            <div class="col-sm-4">
+                              <input id="state" type="text" placeholder="State" class="form-control" value="VA">
+                            </div>
+
+                            <label class="col-sm-2 control-label" for="zipcode" >Zipcode</label>
+                            <div class="col-sm-4">
+                              <input id="zipcode" type="text" placeholder="Post Code" class="form-control" value="22203">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <div class="pull-right">
+                                <!-- <button type="submit" class="btn btn-default">Cancel</button> -->
+                                <button id="findButton" type="submit" class="btn btn-primary btn-lg">Find My Legislators</button>
+                              </div>
+                            </div>
+                          </div>
+
+                        </fieldset>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+
+         <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous""></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- LoDash -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
+
+        <script src="./js/googlemapsFns.js"></script>
+
+        <!-- Google Map -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuJQWXjDrvkXPg--FX1tbkeFzOPqmplHs&callback=initMap"></script>
+
+        <script>
+            $(document).ready(() => {
+                //listener on Find My Polling Place button
+                $('#findButton').click(function(){
+                    setPinOnMap();
+                });
+            })
+
+            function validateAddress(){
+                var hasError = false;
+                if(!$('#address1').val()){
+                    $('#address1').parent().addClass('has-error');
+                    hasError = true;
+                }
+
+                if(!$('#city').val()){
+                    $('#city').parent().addClass('has-error');
+                    hasError = true;
+                }
+
+                if(!$('#state').val()){
+                    $('#state').parent().addClass('has-error');
+                    hasError = true;
+                }
+
+                if(!$('#zipcode').val()){
+                    $('#zipcode').parent().addClass('has-error');
+                }
+
+                if(hasError){
+                    $(".address-error").removeClass('hidden');
+                    throw new Error('address not properly defined');
+                }else{
+                    $(".address-error").addClass('hidden');
+                    var address = $('#address1').val() + $('#city').val() + $('#state').val() + $('#zipcode').val();
+                    return address;
+                }
+            }
+
+            const setPinOnMap = () => {
+                var address = validateAddress();
+                if(address) {
+                    renderMap(address);
+                    const apiKey = 'AIzaSyAalrWHw-aemMa2n3Ou6T3isuVzeHtTBgI';
+                    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+                    $.get(url, ({results}) => {
+                        console.log('results', results);
+                        let location = _.get(results, '[0].geometry.location');
+                        console.log('location', location);
+                        $.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
+                            console.log(data);
+                        })
+                    })
+
+
+                }
+            }
+
+        </script>
+    </body>
+</html>
