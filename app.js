@@ -16,10 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/geolookup/:lat/:lon', (req, res) => {
-    console.log('req.params', req.params);
     openstates.geoLookup(req.params.lat,req.params.lon, function(err, json) {
       if (err) throw err;
-      console.log(json);
       res.send(json);
     });
 });
