@@ -10,6 +10,9 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jsontree css -->
+        <link href="css/jsontree.css" rel="stylesheet">
+
         <style>
             #map {
                 width: 100%;
@@ -23,7 +26,7 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -59,6 +62,7 @@
                 </div>
             </div>
 
+            <!-- Map and Address -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-horizontal" role="form">
@@ -77,7 +81,7 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="address1">Address</label>
                             <div class="col-sm-10">
-                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control">
+                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control" value="900 N Stafford Street">
                             </div>
                           </div>
 
@@ -92,12 +96,12 @@
                           <!-- Text input-->
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="state">State</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10 col-md-4">
                               <input id="state" type="text" placeholder="State" class="form-control" value="VA">
                             </div>
 
                             <label class="col-sm-2 control-label" for="zipcode" >Zipcode</label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10 col-md-4">
                               <input id="zipcode" type="text" placeholder="Post Code" class="form-control" value="22203">
                             </div>
                           </div>
@@ -105,19 +109,23 @@
                           <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                               <div class="pull-right">
-                                <!-- <button type="submit" class="btn btn-default">Cancel</button> -->
                                 <button id="findButton" type="submit" class="btn btn-primary btn-lg">Find My Legislators</button>
                               </div>
                             </div>
                           </div>
 
                         </fieldset>
-                      </div>
+                    </div>
+                    <div class="result-json hidden">
+                        <p>Here are your legislators</p>
+                        <div class="json"></div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div id="map"></div>
                 </div>
             </div>
+
         </div>
 
          <!-- jQuery -->
@@ -134,64 +142,10 @@
         <!-- Google Map -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuJQWXjDrvkXPg--FX1tbkeFzOPqmplHs&callback=initMap"></script>
 
-        <script>
-            $(document).ready(() => {
-                //listener on Find My Polling Place button
-                $('#findButton').click(function(){
-                    setPinOnMap();
-                });
-            })
+        <!-- jsontree js -->
+        <script src="../js/jsontree.js"></script>
 
-            function validateAddress(){
-                var hasError = false;
-                if(!$('#address1').val()){
-                    $('#address1').parent().addClass('has-error');
-                    hasError = true;
-                }
-
-                if(!$('#city').val()){
-                    $('#city').parent().addClass('has-error');
-                    hasError = true;
-                }
-
-                if(!$('#state').val()){
-                    $('#state').parent().addClass('has-error');
-                    hasError = true;
-                }
-
-                if(!$('#zipcode').val()){
-                    $('#zipcode').parent().addClass('has-error');
-                }
-
-                if(hasError){
-                    $(".address-error").removeClass('hidden');
-                    throw new Error('address not properly defined');
-                }else{
-                    $(".address-error").addClass('hidden');
-                    var address = $('#address1').val() + $('#city').val() + $('#state').val() + $('#zipcode').val();
-                    return address;
-                }
-            }
-
-            const setPinOnMap = () => {
-                var address = validateAddress();
-                if(address) {
-                    renderMap(address);
-                    const apiKey = 'AIzaSyAalrWHw-aemMa2n3Ou6T3isuVzeHtTBgI';
-                    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-                    $.get(url, ({results}) => {
-                        console.log('results', results);
-                        let location = _.get(results, '[0].geometry.location');
-                        console.log('location', location);
-                        $.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
-                            console.log(data);
-                        })
-                    })
-
-
-                }
-            }
-
-        </script>
+        <!-- javascript specific to this page -->
+        <script src="./js/index.js"></script>
     </body>
 </html>

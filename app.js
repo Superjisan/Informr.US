@@ -1,28 +1,43 @@
+require('dotenv').config();
+
 const _ = require('lodash');
 const OpenStates = require('openstates');
 const express = require('express');
+const Promise = require('promise');
+const rp = require('request-promise');
 
 const apiKey = process.env.OPEN_STATES_API_KEY;
-var openstates = new OpenStates(apiKey);
-
-
+const openstates = new OpenStates(apiKey);
 
 var app = express();
 app.use(express.static('src'));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('index.html')
+	res.render('index.html')
 });
 
 app.get('/geolookup/:lat/:lon', (req, res) => {
-    openstates.geoLookup(req.params.lat,req.params.lon, function(err, json) {
-      if (err) throw err;
-      res.send(json);
-    });
+	const lat = req.params.lat;
+	const lon = req.params.lon;
+
+	const statesPromise = new Promise(function(resolve, reject) {
+		openstates.geoLookup(lat, lon, function(err, res) {
+			if (err) reject(err);
+			else resolve(res);
+		});
+	});
+
+	const congressUrl = `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${lat}&longitude=${lon}&apikey=${apiKey}`;
+	const congressPromise = rp(congressUrl).then(body => JSON.parse(body).results);
+
+	Promise.all([statesPromise, congressPromise])
+		.then(results => res.send(results))
+		.catch(err => {
+			throw err;
+		})
 });
 
 app.listen(3002, () => {
-     console.log("Server started at localhost:3002")
+	console.log("Server started at localhost:3002")
 });
-
