@@ -34,4 +34,4 @@ The above command should set up a server at `localhost:3002`. So head over at th
 
 You should see something like this:
 
-![alt tag](https://raw.githubusercontent.com/superjisan/10love/master/informRUDemo.gif)
+![alt tag](https://raw.githubusercontent.com/superjisan/InformRU/master/informRUDemo.gif)
