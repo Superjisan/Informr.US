@@ -43,8 +43,34 @@ const getReps = address => {
 		$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
 			$('.json').jsontree(JSON.stringify(data))
 			$('.result-json').removeClass('hidden');
+            const stateLegislators = _.filter(data, legislator => {
+                return legislator.level === 'state';
+            });
+            console.log(stateLegislators);
+            stateLegislators.forEach(leg => {
+                $('.result-legislators-panels').append(generateLegislatorForState(leg));
+            })
 		})
 	});
+}
+
+const generateLegislatorForState = data => {
+    console.log(data);
+    const html = `<div class="panel panel-default mt10">
+        <div class="panel-body row">
+            <div class="legislator-img-col col-xs-3 col-sm-3">
+                <img class="leg-img" src="${data.photo_url}"/>
+            </div>
+            <div class="col-xs-9 col-sm-9">
+                <p class="legislator-name"> ${data.full_name}</p>
+                <p class="legislator-party">Party: ${data.party}</p>
+                <p class="legislator-state">State: ${data.state}</p>
+                <p class="legislator-level">Level: ${data.level}</p>
+                <p class="legislator-chamber">Chamber: ${data.chamber}</p>
+            </div>
+        </div>
+    </div>`
+    return html;
 }
 
 const setPinOnMap = () => {

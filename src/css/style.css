@@ -1,0 +1,23 @@
+.address-error-text{
+    background-color: rgb(161, 57, 59);
+    color: white;
+}
+
+.map {
+    height: 400px;
+    width: 100%;
+}
+
+.leg-img{
+    /*height: 100px;*/
+    width: 100px;
+}
+
+.legislator-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mt10{
+    margin-top: 10px;
+}

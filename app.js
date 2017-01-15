@@ -32,7 +32,7 @@ app.get('/geolookup/:lat/:lon', (req, res) => {
 	const congressPromise = rp(congressUrl).then(body => JSON.parse(body).results);
 
 	Promise.all([statesPromise, congressPromise])
-		.then(results => res.send(results))
+		.then(results => res.send(_.flatten(results)))
 		.catch(err => {
 			throw err;
 		})

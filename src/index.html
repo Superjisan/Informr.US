@@ -9,21 +9,11 @@
         <title>InformRU - How Informed are you?</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <!-- jsontree css -->
-        <link href="css/jsontree.css" rel="stylesheet">
+        <link type="text/css" href="css/jsontree.css" rel="stylesheet">
 
-        <style>
-            #map {
-                width: 100%;
-                height: 400px;
-            }
-
-            .address-error-text{
-                background-color: rgb(161, 57, 59);
-                color: white;
-            }
-        </style>
+        <link type="text/css" href="css/style.css" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -116,14 +106,36 @@
 
                         </fieldset>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map" id="map"></div>
+                </div>
+            </div>
+
+            <div class="row results">
+                <div class="col-xs-6 result-legislators-panels">
+                    <!-- <div class="panel panel-default mt10">
+                        <div class="panel-body row">
+                            <div class="legislator-img-col col-xs-3 col-sm-3">
+                                <img class="leg-img" src="http://virginiageneralassembly.gov/house/members/photos/47.jpg"/>
+                            </div>
+                            <div class="col-xs-9 col-sm-9">
+                                <p class="legislator-name"> Patrick Hope</p>
+                                <p class="legislator-party">Party: Democratic</p>
+                                <p class="legislator-state">State: VA</p>
+                                <p class="legislator-level">Level: state</p>
+                                <p class="legislator-chamber">Chamber: Lower</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-xs-12 result-json-col">
                     <div class="result-json hidden">
                         <p>Here are your legislators</p>
                         <div class="json"></div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div id="map"></div>
-                </div>
+
             </div>
 
         </div>
