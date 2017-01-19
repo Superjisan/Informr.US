@@ -9,21 +9,29 @@ const validateAddress = () => {
 	if (!$('#address1').val()) {
 		$('#address1').parent().addClass('has-error');
 		hasError = true;
-	}
+	} else {
+        $('#address1').parent().removeClass('has-error');
+    }
 
 	if (!$('#city').val()) {
 		$('#city').parent().addClass('has-error');
 		hasError = true;
-	}
+	} else {
+        $('#city').parent().removeClass('has-error');
+    }
 
 	if (!$('#state').val()) {
 		$('#state').parent().addClass('has-error');
 		hasError = true;
-	}
+	} else {
+        $('#state').parent().removeClass('has-error');
+    }
 
 	if (!$('#zipcode').val()) {
 		$('#zipcode').parent().addClass('has-error');
-	}
+	} else {
+        $('#zipcode').parent().removeClass('has-error');
+    }
 
 	if (hasError) {
 		$(".address-error").removeClass('hidden');
@@ -47,8 +55,6 @@ const getReps = address => {
 	$.get(url, ({ results }) => {
 		let location = _.get(results, '[0].geometry.location');
 		$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
-			// $('.json').jsontree(JSON.stringify(data))
-			// $('.result-json').removeClass('hidden');
             const stateLegislators = _.filter(data, legislator => {
                 return legislator.level === 'state' || !legislator.state_name;
             });
