@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (!process.env.OPEN_STATES_API_KEY) {
+    require('dotenv').config();
+}
 
 const _ = require('lodash');
 const OpenStates = require('openstates');
@@ -38,6 +40,6 @@ app.get('/geolookup/:lat/:lon', (req, res) => {
 		})
 });
 
-app.listen(3002, () => {
-	console.log("Server started at localhost:3002")
+app.listen(process.env.PORT || 3002, () => {
+	console.log(`Server started at ${process.env.PORT || 3002}`);
 });
