@@ -7,6 +7,7 @@ const OpenStates = require('openstates');
 const express = require('express');
 const Promise = require('promise');
 const rp = require('request-promise');
+const heroku = require("heroku-ping");
 
 const apiKey = process.env.OPEN_STATES_API_KEY;
 const openstates = new OpenStates(apiKey);
@@ -42,4 +43,13 @@ app.get('/geolookup/:lat/:lon', (req, res) => {
 
 app.listen(process.env.PORT || 3002, () => {
 	console.log(`Server started at ${process.env.PORT || 3002}`);
+});
+
+heroku.ping({
+  interval: 10000,     // milliseconds, defaults to 30 minutes
+  silent: false,       // logging (default: false)
+  apps: [{
+    name: 'inform-r-us', // heroku app name - required
+    secure: false      // requires https (defaults: false)
+  }]
 });
