@@ -16,38 +16,14 @@
         <link type="text/css" href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Inform R U</a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="./index.html">Get Legislators</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
 
         <div class="container">
 
             <!-- Portfolio Item Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Your Address
-                        <small>Type in your address and we'll get you your legislators</small>
+                    <h1 class="page-header">Inform R US
+                        <small>Type in your address to look up your legislators</small>
                     </h1>
                 </div>
             </div>
@@ -71,7 +47,7 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="address1">Address</label>
                             <div class="col-sm-10">
-                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control" value="900 N Stafford Street">
+                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control" value="166-05 Highland Avenue">
                             </div>
                           </div>
 
@@ -79,7 +55,7 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="city">City</label>
                             <div class="col-sm-10">
-                              <input id="city" type="text" placeholder="City" class="form-control" value="Arlington">
+                              <input id="city" type="text" placeholder="City" class="form-control" value="Jamaica">
                             </div>
                           </div>
 
@@ -87,12 +63,12 @@
                           <div class="form-group">
                             <label class="col-sm-2 control-label" for="state">State</label>
                             <div class="col-sm-10 col-md-4">
-                              <input id="state" type="text" placeholder="State" class="form-control" value="VA">
+                              <input id="state" type="text" placeholder="State" class="form-control" value="NY">
                             </div>
 
                             <label class="col-sm-2 control-label" for="zipcode" >Zipcode</label>
                             <div class="col-sm-10 col-md-4">
-                              <input id="zipcode" type="text" placeholder="Post Code" class="form-control" value="22203">
+                              <input id="zipcode" type="text" placeholder="Post Code" class="form-control" value="11432">
                             </div>
                           </div>
 
@@ -112,22 +88,13 @@
                 </div>
             </div>
 
+            <!-- Legislators -->
             <div class="row results">
-                <div class="col-xs-6 result-legislators-panels">
-                    <!-- <div class="panel panel-default mt10">
-                        <div class="panel-body row">
-                            <div class="legislator-img-col col-xs-3 col-sm-3">
-                                <img class="leg-img" src="http://virginiageneralassembly.gov/house/members/photos/47.jpg"/>
-                            </div>
-                            <div class="col-xs-9 col-sm-9">
-                                <p class="legislator-name"> Patrick Hope</p>
-                                <p class="legislator-party">Party: Democratic</p>
-                                <p class="legislator-state">State: VA</p>
-                                <p class="legislator-level">Level: state</p>
-                                <p class="legislator-chamber">Chamber: Lower</p>
-                            </div>
-                        </div>
-                    </div> -->
+                <div class="col-xs-12  col-sm-6 state-legislators-panels">
+                    <!-- <h4 class="hidden">State Legislators</h4> -->
+                </div>
+                <div class="col-xs-12 col-sm-6 congress-legislators-panels">
+                    <!-- <h4 class="hidden">Congressional Legislators</h4> -->
                 </div>
                 <div class="col-xs-12 result-json-col">
                     <div class="result-json hidden">
