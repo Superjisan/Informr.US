@@ -111,10 +111,10 @@ const generateLegislatorForState = data => {
     const html = `<h4 class="hidden">Congressional Legislators</h4>
     <div class="panel panel-default mt10">
         <div class="panel-body row">
-            <div class="legislator-img-col col-xs-3 col-sm-3">
+            <div class="legislator-img-col col-xs-4 col-sm-3">
                 <img class="leg-img" src="${data.photo_url}"/>
             </div>
-            <div class="col-xs-9 col-sm-9">
+            <div class="col-xs-8 col-sm-9">
                 <p class="legislator-name">
                     <a href="${data.url}" target="_blank" >${data.full_name}</a>
                 </p>
