@@ -1,4 +1,6 @@
-# InformRU
+# Inform-R-Us
+
+You can see a demo of this app  [here](informr.us)
 
 To run this app, you'll need:
 
@@ -27,7 +29,7 @@ npm install
 After that is all set up, you can run the server using
 
 ```
-node app.js
+npm start
 ```
 
 The above command should set up a server at `localhost:3002`. So head over at that url in your browser.
