@@ -38,7 +38,8 @@ const validateAddress = () => {
 		throw new Error('address not properly defined');
 	} else {
 		$(".address-error").addClass('hidden');
-		var address = $('#address1').val() + $('#city').val() + $('#state').val() + $('#zipcode').val();
+
+		var address = $('#address1').val() + ' ' + $('#city').val() + ' ' + $('#state').val() + $('#zipcode').val();
 		return address;
 	}
 }
@@ -51,7 +52,7 @@ const resetResults = () => {
 const getReps = address => {
     resetResults();
 	const apiKey = 'AIzaSyAalrWHw-aemMa2n3Ou6T3isuVzeHtTBgI';
-	const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+	const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 	$.get(url, ({ results }) => {
 		let location = _.get(results, '[0].geometry.location');
 		$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
