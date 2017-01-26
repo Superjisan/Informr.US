@@ -63,10 +63,13 @@ const getReps = address => {
                 return legislator.level !== 'state' && legislator.state_name;
             });
 
+
+            $('.state-legislators-panels').append('<h3>State Legislators</h4>');
             stateLegislators.forEach(leg => {
                 $('.state-legislators-panels').append(generateLegislatorForState(leg));
             });
 
+            $('.congress-legislators-panels').append('<h3>Congressional Legislators</h4>')
             congressLegislators.forEach(leg => {
                 $('.congress-legislators-panels').append(generateLegislatorsForCongress(leg));
             });
@@ -88,40 +91,147 @@ const getPartyFull = partyAbbv => {
     }
 };
 
+const generatePhoneForCongress = data => {
+    const phone = data.phone;
+    return `<p class="legislator-phone">
+        <strong>Phone:</strong>
+        <a href="tel:${phone.replace(/-/g, '')}">${phone}</a>
+    </p>`
+}
+
+const generateAddressForCongress = data => {
+    return `<p class="legislator-address">
+        <strong>Address:</strong>
+        ${data.office}, Washington, DC 20003
+    </p>`
+}
+
 const generateLegislatorsForCongress = data => {
-    const html = `<h4 class="hidden">State Legislators</h4>
+    const html = `
     <div class="panel panel-default mt10">
         <div class="panel-body row">
-            <div class="col-xs-12 col-sm-12">
+            <div class="legislator-img-col col-xs-4 col-sm-3">
+                <a href="#">
+                    <img class="leg-img img-thumbnail"/>
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-9">
                 <p class="legislator-name">
                     <a href="${data.website}" target="_blank" >
                         ${data.first_name} ${data.last_name}
                     </a>
                 </p>
-                <p class="legislator-party">Party: ${getPartyFull(data.party)} </p>
-                <p class="legislator-state">State: ${data.state_name}</p>
-                <p class="legislator-chamber">Chamber: ${_.upperFirst(data.chamber)}</p>
+                <p class="legislator-party">
+                    <strong>Party:</strong> ${getPartyFull(data.party)} </p>
+                <p class="legislator-state">
+                    <strong>State:</strong> ${data.state_name}</p>
+                <p class="legislator-chamber">
+                    <strong>Chamber:</strong>
+                    ${_.upperFirst(data.chamber)}
+                </p>
+                ${data.district ? `<p class="legislator-district">
+                    <strong>District:</strong> ${data.district}
+                </p>`: ''}
+                ${generateAddressForCongress(data)}
+                ${generatePhoneForCongress(data)}
             </div>
         </div>
     </div>`;
     return html;
 };
 
+const generatePhoneNumbersForStateLeg = data => {
+    let html = ''
+    const districtOffice = _.find(data.offices, office => office.type === 'district');
+    let distOfficePhone;
+    if(districtOffice) {
+        distOfficePhone = districtOffice.phone;
+    }
+
+    const capitolOffice = _.find(data.offices, office => office.type === 'capitol');
+    let capOfficePhone;
+    if (capitolOffice) {
+        capOfficePhone = capitolOffice.phone;
+    }
+
+    const distOfficeHtml = `${
+        distOfficePhone ? `
+            <p class="legislator-district-phone">
+                <strong>District Office Phone:</strong>
+                <a href="tel:${distOfficePhone.replace(/-/g, '')}">${distOfficePhone}</a>
+            </p>` : ''
+    }`;
+
+    const capitolOfficeHtml = `${
+        capOfficePhone ? `
+            <p class="legislator-capitol-phone">
+                <strong>Capitol Office Phone:</strong>
+                <a href="tel:${capOfficePhone.replace(/-/g, '')}">${capOfficePhone}</a>
+            </p>` : ''
+    }`;
+
+    html = `${distOfficeHtml}${capitolOfficeHtml}`;
+
+    return html;
+}
+
+const generateAddressForStateLeg = data => {
+    let html = '';
+    const districtOffice = _.find(data.offices, office => office.type === 'district');
+    let distOfficeAddress;
+    if(districtOffice) {
+        distOfficeAddress = districtOffice.address;
+    }
+
+    const capitolOffice = _.find(data.offices, office => office.type === 'capitol');
+    let capOfficeAddress;
+    if (capitolOffice) {
+        capOfficeAddress = capitolOffice.address;
+    }
+
+    const distOfficeHtml = districtOffice ? `<p class="legislator-district-address">
+                <strong>District Office Address:</strong>
+                <span>${distOfficeAddress}</span>
+            </p>` : '';
+
+    const capitolOfficeHtml = capitolOffice ? `<p class="legislator-capitol-address">
+                <strong>Capitol Office Address:</strong>
+                <span>${capOfficeAddress}</span>
+            </p>` : '';
+
+    html = `${distOfficeHtml}${capitolOfficeHtml}`;
+
+    return html;
+}
 
 const generateLegislatorForState = data => {
-    const html = `<h4 class="hidden">Congressional Legislators</h4>
+    const html = `
     <div class="panel panel-default mt10">
         <div class="panel-body row">
             <div class="legislator-img-col col-xs-4 col-sm-3">
-                <img class="leg-img" src="${data.photo_url}"/>
+                <a href="#" class="thumbnail">
+                    <img src="${data.photo_url}" alt="state_rep_image"/>
+                </a>
             </div>
             <div class="col-xs-8 col-sm-9">
                 <p class="legislator-name">
                     <a href="${data.url}" target="_blank" >${data.full_name}</a>
                 </p>
-                <p class="legislator-party">Party: ${_.upperFirst(data.party)}</p>
-                <p class="legislator-state">State: ${data.state.toUpperCase()}</p>
-                <p class="legislator-chamber">Chamber: ${_.upperFirst(data.chamber)}</p>
+                <p class="legislator-party">
+                    <strong>Party:</strong> ${_.upperFirst(data.party)}
+                </p>
+                <p class="legislator-state">
+                    <strong>State:</strong> ${data.state.toUpperCase()}
+                </p>
+                <p class="legislator-chamber">
+                    <strong>Chamber:</strong>
+                    ${data.chamber === 'upper' ? 'State Senate' : 'State Assembly'}
+                </p>
+                <p class="legislator-chamber">
+                    <strong>District:</strong> ${data.district}
+                </p>
+                ${generatePhoneNumbersForStateLeg(data)}
+                ${generateAddressForStateLeg(data)}
             </div>
         </div>
     </div>`
