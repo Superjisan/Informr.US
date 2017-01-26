@@ -23,3 +23,12 @@ function renderMap(address, googleMap) {
             }
     });
 }
+
+function renderMapWithLocation(location) {
+    googleMap.setCenter(location);
+    googleMap.setZoom(15);
+    var marker = new google.maps.Marker({
+      map: googleMap,
+      position: location
+    });
+}
