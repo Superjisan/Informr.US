@@ -1,7 +1,22 @@
 $(document).ready(() => {
-	$('#findButton').click(function() {
-		setPinOnMap();
-	});
+	$('#findButton').click(setPinOnMap);
+
+    if (!("geolocation" in navigator)) {
+           $('#findLocationLeg').addClass('hidden');
+    } else {
+      /* geolocation IS available */
+        $('#findLocationLeg').click(() => {
+            resetResults();
+            navigator.geolocation.getCurrentPosition(position => {
+                let location = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                renderMapWithLocation(location);
+                getReps(location);
+            })
+        });
+    }
 })
 
 const validateAddress = () => {
@@ -49,13 +64,18 @@ const resetResults = () => {
     $('.congress-legislators-panels').empty();
 }
 
-const getReps = address => {
+const getGeocodeForAddress = address => {
     resetResults();
 	const apiKey = 'AIzaSyAalrWHw-aemMa2n3Ou6T3isuVzeHtTBgI';
 	const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 	$.get(url, ({ results }) => {
 		let location = _.get(results, '[0].geometry.location');
-		$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
+		getReps(location)
+	});
+}
+
+const getReps = location => {
+    $.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
             const stateLegislators = _.filter(data, legislator => {
                 return legislator.level === 'state' || !legislator.state_name;
             });
@@ -74,8 +94,7 @@ const getReps = address => {
                 $('.congress-legislators-panels').append(generateLegislatorsForCongress(leg));
             });
 
-		})
-	});
+        })
 }
 
 const getPartyFull = partyAbbv => {
@@ -242,6 +261,6 @@ const setPinOnMap = () => {
 	var address = validateAddress();
 	if (address) {
 		renderMap(address);
-		getReps(address);
+		getGeocodeForAddress(address);
 	}
 }
