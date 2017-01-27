@@ -7,7 +7,9 @@ $(document).ready(() => {
       /* geolocation IS available */
         $('#findLocationLeg').click(() => {
             resetResults();
+            $('.loading-img').removeClass('hidden');
             navigator.geolocation.getCurrentPosition(position => {
+                $('.loading-img').addClass('hidden');
                 let location = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
@@ -94,6 +96,7 @@ const getReps = location => {
                 $('.congress-legislators-panels').append(generateLegislatorsForCongress(leg));
             });
 
+            $(document).scrollTop($('.state-legislators-panels').offset().top);
         })
 }
 
