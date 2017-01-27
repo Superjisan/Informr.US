@@ -11,6 +11,10 @@
     border: 4px solid #A4D4D1;
 }
 
+.loading-img{
+    margin: 0 auto;
+}
+
 .leg-img{
     height: 150px;
     width: 100px;
