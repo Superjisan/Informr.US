@@ -82,7 +82,7 @@ a:hover {
 }
 
 .cui-logo {
-    width: 250px;
+    width: 200px;
     height: auto;
     margin: 14px 0 24px 0;
 }
@@ -94,19 +94,18 @@ a:hover {
     overflow: hidden;
 }
 
-.cui-padding {
-    padding-top: 54px;
-    padding-bottom: 54px;
+.cui-jumbotron-left {
+    padding-top: 36px;
 }
 
-.cui-padding-extra {
-    padding-top: 72px;
-    padding-bottom: 72px;
+.cui-jumbotron-right {
+    padding-top: 36px;
+    padding-bottom: 54px;
 }
 
 .cui-jumbotron-header {
     margin: 0 0 0.5em 0;
-    font-size: 72px;
+    font-size: 54px;
     letter-spacing: 0.015em;
 }
 
@@ -224,7 +223,7 @@ a:hover {
     transform-origin: top right;
     position: absolute;
     top: 100%;
-    left: -67px;
+    left: -59px;
 }
 
 .cui-form-group {
@@ -240,10 +239,6 @@ a:hover {
 .cui-input:active,
 .cui-input:focus {
     border-color: #48A4AE;
-}
-
-.cui-input-sm-12 {
-    margin-bottom: 18px;
 }
 
 .cui-button {
@@ -312,6 +307,30 @@ a:hover {
     font-family: 'Enriqueta';
 }
 
+@media (min-width: 768px) {
+
+    .cui-logo {
+        width: 250px;
+    }
+
+    .cui-jumbotron-left {
+        padding-top: 54px;
+    }
+
+    .cui-jumbotron-right {
+        padding-top: 54px;
+        padding-bottom: 72px;
+    }
+
+    .cui-jumbotron-header {
+        font-size: 72px;
+    }
+
+    .cui-long-shadow:before {
+        left: -67px;
+    }
+}
+
 @media (min-width: 992px) {
 
     .cui-row-flex {
@@ -319,16 +338,15 @@ a:hover {
         align-items: stretch;
     }
 
-    .cui-padding:first-child {
+    .cui-jumbotron-left {
+        border: none;
         padding-right: 36px;
+        padding-bottom: 54px;
     }
 
-    .cui-padding-extra {
+    .cui-jumbotron-right {
+        padding-top: 72px;
         padding-left: 36px;
-    }
-
-    .cui-input-sm-12 {
-        margin-bottom: 0;
     }
 
     .cui-panels:nth-child(1) {

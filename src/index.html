@@ -40,7 +40,7 @@
 
                 <!-- Map and Address -->
                 <div class="row cui-row-flex">
-                    <div class="col-md-6 cui-padding">
+                    <div class="col-md-6 cui-jumbotron-left">
                         <h1 class="cui-jumbotron-header">
                             <div>
                                 <span class="cui-long-shadow">
@@ -81,11 +81,11 @@
 
                                 <!-- Text input-->
                                 <div class="form-group cui-form-group">
-                                    <div class="col-sm-12 col-md-6 cui-input-sm-12">
+                                    <div class="col-xs-6">
                                         <input id="state" type="text" placeholder="State" class="form-control input-lg cui-input">
                                     </div>
 
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-xs-6">
                                         <input id="zipcode" type="text" placeholder="Zip Code" class="form-control input-lg cui-input" >
                                     </div>
                                 </div>
@@ -103,13 +103,16 @@
                                     <div class="col-sm-12">
                                         <button id="findLocationLeg" class="btn btn-danger btn-lg btn-block cui-button">Use Current Location</button>
                                     </div>
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <img class="loading-img hidden" src="img/loading.svg"/>
+                                    </div>
                                 </div>
 
                             </fieldset>
                         </div>
                     </div>
 
-                    <div class="col-md-6 cui-padding-extra">
+                    <div class="col-md-6 cui-jumbotron-right">
                         <div class="map" id="map"></div>
                     </div>
                 </div>
