@@ -41,6 +41,13 @@ app.get('/geolookup/:lat/:lon', (req, res) => {
 		})
 });
 
+app.use(function(req, res, next) {
+  if(!req.secure) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
+
 app.listen(process.env.PORT || 3002, () => {
 	console.log(`Server started at ${process.env.PORT || 3002}`);
 });
