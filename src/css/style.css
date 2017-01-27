@@ -12,7 +12,12 @@
 }
 
 .loading-img{
-    margin: 0 auto;
+    height: 75%;
+    width:  auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
 }
 
 .leg-img{
@@ -257,6 +262,18 @@ a:hover {
 .cui-button:hover {
     background: #ac2925;
     border-color: #ac2925;
+}
+
+.loading-img + .cui-button {
+    color: transparent;
+    text-shadow: none;
+}
+
+.loading-img.hidden + .cui-button {
+    color: #fff;
+    text-shadow:
+        -1px 1px 0 #ac2925,
+        -2px 2px 0 #ac2925;
 }
 
 .cui-text-rule {
