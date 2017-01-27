@@ -1,7 +1,7 @@
-.address-error-text{
+/*.address-error-text{
     background-color: rgb(161, 57, 59);
     color: white;
-}
+}*/
 
 .map {
     /*height: 400px;*/
@@ -49,7 +49,7 @@ body {
   background-color: #f5f5f5;
 }
 
-/* New Styles */
+/* Custom UI Styles */
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -64,10 +64,23 @@ h6 {
     font-weight: 700;
 }
 
+a {
+    color: #26517F;
+}
+
+a:hover {
+    color: #003268;
+}
+
+.address-error-text {
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
 .cui-logo {
     width: 250px;
     height: auto;
-    margin: 19px 0;
+    margin: 14px 0 24px 0;
 }
 
 .cui-background {
@@ -78,18 +91,18 @@ h6 {
 }
 
 .cui-padding {
-    padding-top: 57px;
-    padding-bottom: 57px;
+    padding-top: 54px;
+    padding-bottom: 54px;
 }
 
 .cui-padding-extra {
-    padding-top: 76px;
-    padding-bottom: 76px;
+    padding-top: 72px;
+    padding-bottom: 72px;
 }
 
 .cui-jumbotron-header {
     margin: 0 0 0.5em 0;
-    font-size: 76px;
+    font-size: 72px;
     letter-spacing: 0.015em;
 }
 
@@ -202,20 +215,20 @@ h6 {
     content: " ";
     background: #26517f;
     width: calc(100% + 38px);
-    height: 400px;
+    height: 500px;
     transform: skew(135deg);
     transform-origin: top right;
     position: absolute;
     top: 100%;
-    left: -70px;
+    left: -67px;
 }
 
 .cui-form-group {
-    margin-bottom: 19px;
+    margin-bottom: 18px;
 }
 
 .cui-input {
-    height: 57px;
+    height: 54px;
     border: 4px solid #A4D4D1;
     border-radius: 0;
 }
@@ -226,12 +239,12 @@ h6 {
 }
 
 .cui-input-sm-12 {
-    margin-bottom: 19px;
+    margin-bottom: 18px;
 }
 
 .cui-button {
     background: #c9302c;
-    height: 57px;
+    height: 54px;
     border: 4px solid #ac2925;
     border-radius: 0;
     text-transform: uppercase;
@@ -247,6 +260,54 @@ h6 {
     border-color: #ac2925;
 }
 
+.cui-text-rule {
+    margin: 0 0 16px 0;
+    font-family: 'Enriqueta';
+    letter-spacing: 0.1em;
+    font-style: italic;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.cui-text-rule:before,
+.cui-text-rule:after {
+    content: " ";
+    background: #fff;
+    height: 1px;
+    margin: 0 15px 0 0;
+    display: block;
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
+}
+
+.cui-text-rule:after {
+    margin: 0 0 0 15px;
+}
+
+.cui-panels h3 {
+    margin: 36px 0;
+}
+
+.cui-panels .panel {
+    background: #f5f5f5;
+    margin: 0 0 54px 0;
+    border: 4px solid #ddd;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.cui-panels .legislator-name {
+    font-family: 'Enriqueta';
+}
+
 @media (min-width: 992px) {
 
     .cui-row-flex {
@@ -255,10 +316,22 @@ h6 {
     }
 
     .cui-padding:first-child {
-        padding-right: 76px;
+        padding-right: 36px;
+    }
+
+    .cui-padding-extra {
+        padding-left: 36px;
     }
 
     .cui-input-sm-12 {
         margin-bottom: 0;
+    }
+
+    .cui-panels:nth-child(1) {
+        padding-right: 36px;
+    }
+
+    .cui-panels:nth-child(2) {
+        padding-left: 36px;
     }
 }

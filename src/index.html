@@ -12,7 +12,7 @@
         <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Enriqueta:700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Enriqueta:700|Open+Sans:400,700" rel="stylesheet">
 
         <!-- jsontree css -->
         <link type="text/css" href="css/jsontree.css" rel="stylesheet">
@@ -58,8 +58,10 @@
                             <fieldset>
 
                                 <div class="form-group hidden address-error">
-                                    <div class="col-sm-12 address-error-text form-control">
-                                        Please fill out all of the fields for address.
+                                    <div class="col-sm-12">
+                                        <div class="address-error-text">
+                                            Please fill out all of the fields for address.
+                                        </div>
                                     </div>
                                 </div>
 
@@ -84,14 +86,22 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-6">
-                                        <input id="zipcode" type="text" placeholder="Post Code" class="form-control input-lg cui-input" >
+                                        <input id="zipcode" type="text" placeholder="Zip Code" class="form-control input-lg cui-input" >
                                     </div>
                                 </div>
 
                                 <!-- Button -->
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button id="findButton" type="submit" class="btn btn-danger btn-block btn-lg cui-button">Find My Legislators</button>
+                                        <button id="findButton" type="submit" class="btn btn-danger btn-lg btn-block cui-button">Search Address</button>
+                                    </div>
+                                </div>
+
+                                <div class="cui-text-rule">Or</div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button id="findLocationLeg" class="btn btn-danger btn-lg btn-block cui-button">Use Current Location</button>
                                     </div>
                                 </div>
 
@@ -109,82 +119,11 @@
 
         <div class="container">
 
-            <!-- Portfolio Item Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Inform-R-US
-                    </h1>
-                </div>
-            </div>
-
-            <!-- Map and Address -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-horizontal" role="form">
-                        <fieldset>
-
-                          <!-- Form Name -->
-                          <legend>Address Details</legend>
-
-                          <div class="form-group hidden address-error">
-                            <div class="col-sm-12 address-error-text form-control">
-                              Please fill out all of the fields for address.
-                            </div>
-                          </div>
-
-                          <!-- Text input-->
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label" for="address1">Address</label>
-                            <div class="col-sm-10">
-                              <input id="address1" type="text" placeholder="Address Line 1" class="form-control">
-                            </div>
-                          </div>
-
-                          <!-- Text input-->
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label" for="city">City</label>
-                            <div class="col-sm-10">
-                              <input id="city" type="text" placeholder="City" class="form-control">
-                            </div>
-                          </div>
-
-                          <!-- Text input-->
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label" for="state">State</label>
-                            <div class="col-sm-10 col-md-4">
-                              <input id="state" type="text" placeholder="State" class="form-control">
-                            </div>
-
-                            <label class="col-sm-2 control-label" for="zipcode" >Zipcode</label>
-                            <div class="col-sm-10 col-md-4">
-                              <input id="zipcode" type="text" placeholder="Post Code" class="form-control">
-                            </div>
-                          </div>
-
-                          <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <div class="pull-right">
-                                <button id="findLocationLeg" class="btn btn-primary btn-lg">Current Location</button>
-                                <button id="findButton" type="submit" class="btn btn-primary btn-lg">Find My Legislators</button>
-                              </div>
-                            </div>
-                          </div>
-
-                        </fieldset>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="map" id="map"></div>
-                </div>
-            </div>
-
             <!-- Legislators -->
             <div class="row results">
-                <div class="col-xs-12 col-sm-6 state-legislators-panels">
+                <div class="col-xs-12 col-sm-6 state-legislators-panels cui-panels">
                 </div>
-                <div class="col-xs-12 col-sm-6 congress-legislators-panels">
+                <div class="col-xs-12 col-sm-6 congress-legislators-panels cui-panels">
                 </div>
                 <div class="col-xs-12 result-json-col">
                     <div class="result-json hidden">
@@ -197,12 +136,16 @@
 
         <!-- Footer -->
         <div class="footer">
-            <div class="container ml10">
-                <span class="copyright">&copy; 2017 Jisan Zaman</span>
-                <span class="github">
-                    <i class="fa fa-github"></i>
-                    <a href="https://github.com/Superjisan/Inform-R-Us">GitHub</a>
-                </span>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="copyright">&copy; 2017 Jisan Zaman</span>
+                        <span class="github">
+                            <i class="fa fa-github"></i>
+                            <a href="https://github.com/Superjisan/Inform-R-Us">GitHub</a>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
