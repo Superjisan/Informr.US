@@ -10,13 +10,103 @@
 
         <!-- Bootstrap Core CSS -->
         <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arvo:700|Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Enriqueta:700" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
         <!-- jsontree css -->
         <link type="text/css" href="css/jsontree.css" rel="stylesheet">
 
         <link type="text/css" href="css/style.css" rel="stylesheet">
         <link rel="icon" type="image/jpeg" href="img/democracy.jpeg">
+
+<script src="https://use.typekit.net/dax7daw.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
     </head>
     <body>
+
+        <div class="cui-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img class="cui-logo" src="img/informrus.svg" alt="Inform R US">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cui-background">
+            <div class="container">
+
+                <!-- Map and Address -->
+                <div class="row cui-row-flex">
+                    <div class="col-md-6 cui-padding">
+                        <h1 class="cui-jumbotron-header">
+                            <div>
+                                <span class="cui-long-shadow">
+                                    Find your
+                                </span>
+                            </div>
+                            <div>
+                                <span class="cui-long-shadow">
+                                    legislators
+                                </span>
+                            </div>
+                        </h1>
+
+                        <div class="form-horizontal" role="form">
+                            <fieldset>
+
+                                <div class="form-group hidden address-error">
+                                    <div class="col-sm-12 address-error-text form-control">
+                                        Please fill out all of the fields for address.
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group cui-form-group">
+                                    <div class="col-sm-12">
+                                        <input id="address1" type="text" placeholder="Address Line 1" class="form-control input-lg cui-input">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group cui-form-group">
+                                    <div class="col-sm-12">
+                                        <input id="city" type="text" placeholder="City" class="form-control input-lg cui-input">
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group cui-form-group">
+                                    <div class="col-sm-12 col-md-6 cui-input-sm-12">
+                                        <input id="state" type="text" placeholder="State" class="form-control input-lg cui-input">
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <input id="zipcode" type="text" placeholder="Post Code" class="form-control input-lg cui-input" >
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button id="findButton" type="submit" class="btn btn-danger btn-block btn-lg cui-button">Find My Legislators</button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 cui-padding-extra">
+                        <div class="map" id="map"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <div class="container">
 
@@ -84,6 +174,7 @@
                         </fieldset>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="map" id="map"></div>
                 </div>
