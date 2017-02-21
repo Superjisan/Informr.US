@@ -16,6 +16,16 @@ var app = express();
 app.use(express.static('src'));
 app.use(express.static('public'));
 
+/* At the top, with other redirect methods before other routes */
+app.get('*',function(req,res,next) {
+    //needed for heroku redirects
+    if (req.headers['x-forwarded-proto']!='https') {
+        res.redirect('https://informr.us'+req.url)
+    } else {
+        next() /* Continue to other routes if we're not redirecting */
+    }
+})
+
 app.get('/', (req, res) => {
 	res.render('index.html')
 });
@@ -39,13 +49,6 @@ app.get('/geolookup/:lat/:lon', (req, res) => {
 		.catch(err => {
 			throw err;
 		})
-});
-
-app.use(function(req, res, next) {
-  if(!req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  next();
 });
 
 app.listen(process.env.PORT || 3002, () => {
