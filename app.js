@@ -13,18 +13,17 @@ const apiKey = process.env.OPEN_STATES_API_KEY;
 const openstates = new OpenStates(apiKey);
 
 var app = express();
-app.use(express.static('src'));
-app.use(express.static('public'));
-
 /* At the top, with other redirect methods before other routes */
-app.get('*',function(req,res,next) {
-    //needed for heroku redirects
-    if (req.headers['x-forwarded-proto']!='https') {
+app.use(function(req,res,next) {
+    if(process.env.PORT && req.headers['x-forwarded-proto'] !== 'https') {
+        //needed for heroku redirects
         res.redirect('https://informr.us'+req.url)
     } else {
-        next() /* Continue to other routes if we're not redirecting */
+        next()
     }
-})
+});
+app.use(express.static('src'));
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
 	res.render('index.html')
@@ -55,11 +54,14 @@ app.listen(process.env.PORT || 3002, () => {
 	console.log(`Server started at ${process.env.PORT || 3002}`);
 });
 
-heroku.ping({
-  interval: 300000,     // milliseconds, defaults to 30 minutes
-  silent: false,       // logging (default: false)
-  apps: [{
-    name: 'inform-r-us', // heroku app name - required
-    secure: false      // requires https (defaults: false)
-  }]
-});
+//ONLY do this on prod
+if (process.env.PORT) {
+    heroku.ping({
+      interval: 300000,     // milliseconds, defaults to 30 minutes
+      silent: false,       // logging (default: false)
+      apps: [{
+        name: 'inform-r-us', // heroku app name - required
+        secure: true      // requires https (defaults: false)
+      }]
+    });
+}
