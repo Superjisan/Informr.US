@@ -128,6 +128,17 @@ const generateAddressForCongress = data => {
     </p>`
 }
 
+const generateSocialMediaForCongress = data => {
+	return `<p class="legislator-socialmedia">
+		${data.twitter_id ? `<a href="https://twitter.com/${data.twitter_id}" target="_blank">
+		<img src="../img/twitter.svg" class="social"/></a>&nbsp;&nbsp;` : ''}
+		${data.facebook_id ? `<a href="https://www.facebook.com/${data.facebook_id}" target="_blank">
+		<img src="../img/fb.svg" class="social"/></a>&nbsp;&nbsp;` : ''}
+		${data.youtube_id ? `<a href="https://www.youtube.com/user/${data.youtube_id}" target="_blank">
+		<img src="../img/youtube.svg" class="social"/></a>&nbsp;&nbsp;` : ''}
+	</p>`			
+}
+
 const generateLegislatorsForCongress = data => {
     const html = `
     <div class="panel panel-default mt10">
@@ -136,6 +147,7 @@ const generateLegislatorsForCongress = data => {
                 <a href="#">
                     <img class="leg-img img-thumbnail"/>
                 </a>
+				${generateSocialMediaForCongress(data)}
             </div>
             <div class="col-xs-8 col-sm-9">
                 <p class="legislator-name">
