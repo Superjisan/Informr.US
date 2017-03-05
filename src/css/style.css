@@ -204,3 +204,11 @@ thanks to: http://codepen.io/o2/pen/RawKZN
     height: 100%;
     padding-right: 10px;
 }
+
+/* privacy policy section 
+-------------------------------------------------- */
+
+.privacy-content a {
+    color: white;
+    text-decoration: underline;
+}
