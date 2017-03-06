@@ -12,7 +12,7 @@ You can clone this app using git
 git clone https://github.com/Superjisan/Informr.US.git
 ```
 
-To run this app, you'll need to set a `.env` file at the root directory of this project. The `.env` file should contain the API key for Sunlight Foundation. You can get your own here
+To run this app, you'll need to set a `.env` file at the root directory of this project. The `.env` file should contain the API key for Sunlight Foundation.
 
 Example `.env` file
 
