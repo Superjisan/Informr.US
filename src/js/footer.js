@@ -63,7 +63,7 @@
         $copyright.html(yearStr + textStr);
     })
     .catch((e) => {
-        console.log(e);
+        console.error(e);
     });
     
 })();
