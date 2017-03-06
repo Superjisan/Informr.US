@@ -1,6 +1,6 @@
 # Inform-R-Us
 
-You can see a demo of this app  [here](informr.us)
+You can see a demo of this app [here](https://www.informr.us)
 
 To run this app, you'll need:
 
@@ -9,16 +9,18 @@ To run this app, you'll need:
 You can clone this app using git
 
 ```
-git clone https://github.com/Superjisan/InformRU.git
+git clone https://github.com/Superjisan/Informr.US.git
 ```
 
-To run this app, you'll need to set a `.env` file at the root directory of this project. The `.env` file should contain the API key for Sunlight Foundation.
+To run this app, you'll need to set a `.env` file at the root directory of this project. The `.env` file should contain the API key for Sunlight Foundation. You can get your own here
 
 Example `.env` file
 
 ```javascript
 OPEN_STATES_API_KEY={YOUR_KEY_HERE}
 ```
+
+UPDATE: there's no need for apikey anymore, and you can just use your email apparently: http://docs.openstates.org/en/latest/api/#basics
 
 After setting up an env file, ensure that you run
 
