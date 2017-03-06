@@ -1,4 +1,4 @@
-# Inform-R-Us
+# informr.us
 
 You can see a demo of this app [here](https://www.informr.us)
 
