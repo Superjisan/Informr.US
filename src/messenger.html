@@ -5,8 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="An application that allows people to inform themselves of their state legislators in a fun way">
-        <meta name="author" content="Jisan Zaman">
-        <meta property="og:image" content="https://www.informr.us/img/favicon.png" />
+        <meta name="author" content="Taq Karim">
+
+        <meta property="og:title"              content="Have you called your senators and representatives yet today?" />
+        <meta property="og:description"        content="Look up the contact information of your local representatives with Informr" />
+        <meta property="og:image"              content="https://www.informr.us/img/favicon.png" />
+
         <title>InformRUs - How informed are you?</title>
 
         <!-- Bootstrap Core CSS -->
@@ -56,65 +60,41 @@
                             </div>
                         </h1>
 
-                        <div class="form-horizontal" role="form">
-                            <fieldset>
+                        <section class="messenger-copy">
+                            <h2 class="messenger-header">...with our messenger bot!</h2>
 
-                                <div class="form-group hidden address-error">
-                                    <div class="col-sm-12">
-                                        <div class="address-error-text">
-                                            Please fill out all of the fields for address.
-                                        </div>
-                                    </div>
-                                </div>
+                            <p class="messenger-content">
+                                You can find and view the same results you would find on this website on the app. 
+                            </p>
 
-                                <!-- Text input-->
-                                <div class="form-group cui-form-group">
-                                    <div class="col-sm-12">
-                                        <input id="address1" type="text" placeholder="Address Line 1" class="form-control input-lg cui-input" autocomplete="shipping street-address">
-                                    </div>
-                                </div>
+                            <a href="https://m.me/informr2017" class="messenger-btn">
+                                <img src="img/fb_messenger_icon.png" class="messenger-btn__img">
+                                Get started
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://m.me/informr2017" class="messenger-btn">
+                                <img src="img/f_icon.png" class="messenger-btn__img">
+                                Share with friends
+                            </a>
+                        </section>
 
-                                <!-- Text input-->
-                                <div class="form-group cui-form-group">
-                                    <div class="col-sm-12">
-                                        <input id="city" type="text" placeholder="City" class="form-control input-lg cui-input" autocomplete="shipping locality">
-                                    </div>
-                                </div>
-
-                                <!-- Text input-->
-                                <div class="form-group cui-form-group">
-                                    <div class="col-xs-6">
-                                        <input id="state" type="text" placeholder="State" class="form-control input-lg cui-input" autocomplete="shipping region">
-                                    </div>
-
-                                    <div class="col-xs-6">
-                                        <input id="zipcode" type="text" placeholder="Zip Code" class="form-control input-lg cui-input" autocomplete="shipping postal-code">
-                                    </div>
-                                </div>
-
-                                <!-- Button -->
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button id="findButton" type="submit" class="btn btn-danger btn-lg btn-block cui-button">Search Address</button>
-                                    </div>
-                                </div>
-
-                                <div class="cui-text-rule">Or</div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <img class="loading-img hidden" src="img/loading.svg"/>
-                                        <button id="findLocationLeg" class="btn btn-danger btn-lg btn-block cui-button">Use Current Location</button>
-                                    </div>
-                                </div>
-
-                            </fieldset>
-                        </div>
                     </div>
 
                     <div class="col-md-6 cui-jumbotron-right">
-                        <div class="map" id="map"></div>
-                    </div>
+                        <div class="phone phone--pull10">
+                            <div class="iPhone">
+                                <div id="cover">
+                                    <div id="n_light"></div>
+                                    <div id="camera"></div>
+                                    <div id="speaker"></div>
+                                    <div class="screen">
+                                        <img src="img/informr_chat_screen.png" style="width: 100%;"/>
+                                    </div>
+                                    <div id="home_btn"></div>
+                                </div><!-- cover -->
+                            </div><!-- iphone -->
+                        </div><!-- phone -->
+                    </div> <!-- cui-jumbotron-right -->
+
                 </div>
 
             </div>
@@ -166,17 +146,7 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <!-- LoDash -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
-
-        <script src="./js/googlemapsFns.js"></script>
-
-        <!-- Google Map -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuJQWXjDrvkXPg--FX1tbkeFzOPqmplHs&callback=initMap"></script>
-
-        <!-- javascript specific to this page -->
-        <script src="./js/index.js"></script>
-
         <script src="./js/footer.js"></script>
+
     </body>
 </html>

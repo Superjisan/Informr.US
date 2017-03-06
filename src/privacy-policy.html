@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="An application that allows people to inform themselves of their state legislators in a fun way">
+        <meta name="author" content="Taq Karim">
+
+        <meta property="og:title"              content="Have you called your senators and representatives yet today?" />
+        <meta property="og:description"        content="Look up the contact information of your local representatives with Informr" />
+        <meta property="og:image"              content="https://www.informr.us/img/favicon.png" />
+
+        <title>InformRUs - How informed are you?</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Enriqueta:700|Open+Sans:400,700" rel="stylesheet">
+
+        <link type="text/css" href="css/style.css" rel="stylesheet">
+        <link type="text/css" href="css/cui.css" rel="stylesheet">
+
+        <link rel="icon" type="image/png" href="img/favicon.png">
+
+        <!-- Font-Awesome -->
+        <script src="https://use.fontawesome.com/55d3ce9d2e.js"></script>
+    </head>
+    <body>
+
+        <div class="cui-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="/">
+                            <img class="cui-logo" src="img/informrus.svg" alt="Inform R US">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cui-background">
+            <div class="container">
+
+                <!-- Map and Address -->
+                <div class="row cui-row-flex">
+                    <div class="col-md-6 cui-jumbotron-left">
+                        <h1 class="cui-jumbotron-header">
+                            <div>
+                                <span class="cui-long-shadow">
+                                    Privacy Policy
+                                </span>
+                            </div>
+                        </h1>
+                    </div>
+
+                    <div class="col-md-6 cui-jumbotron-right privacy-content">
+<h1 id="privacy-notice">Privacy Notice</h1>
+<p>This privacy notice discloses the privacy practices for <a href="https://informr.us">https://informr.us</a>. This privacy notice applies solely to information collected by this website. It will notify you of the following:</p>
+<ol>
+<li>What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.</li>
+<li>What choices are available to you regarding the use of your data.</li>
+<li>The security procedures in place to protect the misuse of your information.</li>
+<li>How you can correct any inaccuracies in the information.</li>
+</ol>
+<h2 id="information-collection-use-and-sharing">Information Collection, Use, and Sharing</h2>
+<p>We are the sole owners of the information collected on this site. We only have access to/collect information that you voluntarily give us via direct contact from you from the Facebook Messenger Application. We will not sell or rent this information to anyone.</p>
+<p>We will use your information to respond to you, regarding the reason you contacted us. We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request, e.g. to ship an order.</p>
+<p>Unless you ask us not to, we may contact you via Facebook Messenger Application in the future to tell you about specials, new products or services, or changes to this privacy policy.</p>
+<h2 id="your-access-to-and-control-over-information">Your Access to and Control Over Information</h2>
+<p>You may opt out of any future contacts from us at any time. You can do the following at any time through the Facebook Messenger Application settings page.</p>
+<p>You can do the following at any time by contacting us via the email address or phone number given on our website:</p>
+<ol>
+<li>See what data we have about you, if any.</li>
+<li>Express any concern you have about our use of your data.</li>
+</ol>
+<h2 id="security">Security</h2>
+<p>We take precautions to protect your information. When you submit sensitive information via the website, your information is protected both online and offline.</p>
+<p>Wherever we collect sensitive information (such as credit card data), that information is encrypted and transmitted to us in a secure way. You can verify this by looking for a lock icon in the address bar and looking for "https" at the beginning of the address of the Web page.</p>
+<p>While we use encryption to protect sensitive information transmitted online, we also protect your information offline. </p>
+<p>If you feel that we are not abiding by this privacy policy, you should contact us immediately via our Facebook page: <a href="https://www.facebook.com/informr2017">https://www.facebook.com/informr2017</a></p>
+                    </div> <!-- cui-jumbotron-right -->
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!-- Legislators -->
+            <div class="row results">
+                <div class="col-xs-12 col-sm-6 state-legislators-panels cui-panels">
+                </div>
+                <div class="col-xs-12 col-sm-6 congress-legislators-panels cui-panels">
+                </div>
+                <div class="col-xs-12 result-json-col">
+                    <div class="result-json hidden">
+                        <p>Here are your legislators</p>
+                        <div class="json"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="copyright js-copyright">&copy; 2017 Jisan Zaman</span>
+                        <span class="github">
+                            <i class="fa fa-github"></i>
+                            <a href="https://github.com/Superjisan/Inform-R-Us">GitHub</a>,
+                        </span>
+                        <span class="messenger">
+                            <i class="fa fa-comment"></i>
+                            <a href="/messenger.html">Messenger app</a>,
+                        </span>
+                        <span class="privacy-policy-link">
+                            <i class="fa fa-lock"></i>
+                            <a href="/privacy-policy.html">Privacy Policy</a>.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous""></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="./js/footer.js"></script>
+    </body>
+</html>
