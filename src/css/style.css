@@ -53,6 +53,12 @@ a:hover {
     font-weight: bold;
 }
 
+.social {
+	width: 24px;
+	height: 24px;
+	margin-top: 5px;
+}
+
 .mt10{
     margin-top: 10px;
 }
