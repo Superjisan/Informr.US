@@ -39,8 +39,6 @@ module.exports = (req, res) => {
 				}
 			});
 
-			console.log('state reps', results[0]);
-
 			// congress photo_url setting
 			results[1].forEach(rep => {
 				if(rep.chamber === 'house') {
