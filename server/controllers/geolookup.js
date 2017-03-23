@@ -8,6 +8,8 @@ const rp = require('request-promise');
 
 const congressRepImages = require('../../state-json-data/states_rep_images.json');
 const congressSenatorImages = require('../../state-json-data/states_senators_images.json');
+const vaStateSenatorImages = require('../../state-json-data/va_state_senate_images.json');
+const vaStateDelegatesImages = require('../../state-json-data/va_state_house_images.json');
 
 module.exports = (req, res) => {
 	const lat = req.params.lat;
@@ -21,10 +23,24 @@ module.exports = (req, res) => {
 	});
 
 	const congressUrl = `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${lat}&longitude=${lon}&apikey=${apiKey}`;
-	const congressPromise = rp(congressUrl).then(body => JSON.parse(body).results);
+	const congressPromise = rp(congressUrl)
+		.then(body => JSON.parse(body).results);
 
 	Promise.all([statesPromise, congressPromise])
 		.then(results => {
+			//fix va images for state
+			results[0].forEach(rep => {
+				if (rep.state === 'va') {
+					if (rep.chamber === 'upper') {
+						rep.photo_url = vaStateSenatorImages.images[rep.district - 1];
+					} else {
+						rep.photo_url = vaStateDelegatesImages.images[rep.district - 1];
+					}
+				}
+			});
+
+			console.log('state reps', results[0]);
+
 			// congress photo_url setting
 			results[1].forEach(rep => {
 				if(rep.chamber === 'house') {
