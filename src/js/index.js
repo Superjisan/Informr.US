@@ -21,33 +21,19 @@ $(document).ready(() => {
 	}
 });
 
+const jqueryFieldSelectors = ['#address1', '#city', '#state', '#zipcode'];
+
 const validateAddress = () => {
 	var hasError = false;
-	if (!$('#address1').val()) {
-		$('#address1').parent().addClass('has-error');
-		hasError = true;
-	} else {
-		$('#address1').parent().removeClass('has-error');
-	}
 
-	if (!$('#city').val()) {
-		$('#city').parent().addClass('has-error');
-		hasError = true;
-	} else {
-		$('#city').parent().removeClass('has-error');
-	}
-
-	if (!$('#state').val()) {
-		$('#state').parent().addClass('has-error');
-		hasError = true;
-	} else {
-		$('#state').parent().removeClass('has-error');
-	}
-
-	if (!$('#zipcode').val()) {
-		$('#zipcode').parent().addClass('has-error');
-	} else {
-		$('#zipcode').parent().removeClass('has-error');
+	for (let i = 0; i < jqueryFieldSelectors.length; i++) {
+		let jQueryField = $(jqueryFieldSelectors[i]);
+		if (!jQueryField.val()) {
+			jQueryField.parent().addClass('has-error');
+			hasError = true;
+		} else {
+			jQueryField.parent().removeClass('has-error');
+		}
 	}
 
 	if (hasError) {
@@ -62,9 +48,14 @@ const validateAddress = () => {
 };
 
 const resetResults = () => {
+	resetAddressFields();
 	$('.state-legislators-panels').empty();
 	$('.congress-legislators-panels').empty();
 };
+
+const resetAddressFields = () => {
+	jqueryFieldSelectors.forEach(field => $(field).val(''));
+}
 
 const getGeocodeForAddress = address => {
 	resetResults();
