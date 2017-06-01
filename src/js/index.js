@@ -149,7 +149,7 @@ const generateLegislatorsForCongress = data => {
 		<div class="panel-body row">
 			<div class="legislator-img-col col-xs-12 col-sm-12 text-center">
 				<a href="#" class="thumbnail">
-					<img ${photoUrlHtml}/>
+					<img class="leg-img" ${photoUrlHtml}/>
 				</a>
 				${generateSocialMediaForCongress(data)}
 			</div>
@@ -252,7 +252,7 @@ const generateLegislatorForState = data => {
 		<div class="panel-body row">
 			<div class="legislator-img-col col-xs-12 col-sm-12 text-center">
 				<a href="#" class="thumbnail">
-					<img src="${data.photo_url}" alt="state_rep_image"/>
+					<img class="leg-img" src="${data.photo_url}" alt="state_rep_image"/>
 				</a>
 			</div>
 			<div class="col-xs-12 col-sm-12">

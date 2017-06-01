@@ -43,8 +43,7 @@ a:hover {
 }
 
 .leg-img{
-    height: 150px;
-    width: 100px;
+    max-height: 150px;
     border-radius: 0;
 }
 
@@ -217,4 +216,9 @@ thanks to: http://codepen.io/o2/pen/RawKZN
 .privacy-content a {
     color: white;
     text-decoration: underline;
+}
+
+.list-group{
+  height: 800px;
+  overflow-y: auto
 }
