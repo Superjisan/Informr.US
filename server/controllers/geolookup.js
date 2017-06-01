@@ -17,28 +17,20 @@ module.exports = (req, res) => {
 
 	const statesPromise = new Promise(function(resolve, reject) {
 		openstates.geoLookup(lat, lon, function(err, res) {
-			if (err) reject(err);
+			if (err) throw err
 			else resolve(res);
 		});
 	});
 
 	const congressUrl = `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${lat}&longitude=${lon}&apikey=${apiKey}`;
 	const congressPromise = rp(congressUrl)
-		.then(body => JSON.parse(body).results);
+		.then(body => {
+			const results = JSON.parse(body).results;
+			return results
+		});
 
 	Promise.all([statesPromise, congressPromise])
 		.then(results => {
-			//fix va images for state
-			results[0].forEach(rep => {
-				if (rep.state === 'va') {
-					if (rep.chamber === 'upper') {
-						rep.photo_url = vaStateSenatorImages.images[rep.district - 1];
-					} else {
-						rep.photo_url = vaStateDelegatesImages.images[rep.district - 1];
-					}
-				}
-			});
-
 			// congress photo_url setting
 			results[1].forEach(rep => {
 				if(rep.chamber === 'house') {

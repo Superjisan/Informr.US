@@ -20,8 +20,6 @@ Example `.env` file
 OPEN_STATES_API_KEY={YOUR_KEY_HERE}
 ```
 
-UPDATE: there's no need for apikey anymore, and you can just use your email apparently: http://docs.openstates.org/en/latest/api/#basics
-
 After setting up an env file, ensure that you run
 
 ```
