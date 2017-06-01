@@ -40,30 +40,31 @@
         });
     } // validateCopyright
 
-    const isCopyright = validateCopyright('.js-copyright');
-    const contributors = isCopyright
-        .then(() => getContributors('Superjisan', 'Informr.US'))
-        .then((data) => {
-            const userData = data.map((curr) => {
-                return getUser(curr.login);
-            });
+    // TODO: FIX
+    // const isCopyright = validateCopyright('.js-copyright');
+    // const contributors = isCopyright
+    //     .then(() => getContributors('Superjisan', 'Informr.US'))
+    //     .then((data) => {
+    //         const userData = data.map((curr) => {
+    //             return getUser(curr.login);
+    //         });
 
-            return Promise.all(userData);
-        });
+    //         return Promise.all(userData);
+    //     });
 
-    Promise.all([isCopyright, contributors])
-    .then((results) => {
-        const [$copyright, data] = results;
-        const textStr = data.reduce((_arr, curr, index) => {
-            const prefix = (index === data.length - 1) ? 'and ' : '';
-            _arr.push(prefix + (`<a href="https://github.com/${curr.login}" target="_blank">${curr.name || curr.login}</a>`));
-            return _arr;        
-        }, []).join(', ');
-        const yearStr = `&copy; ${new Date().getFullYear()} `;
-        $copyright.html(yearStr + textStr);
-    })
-    .catch((e) => {
-        console.error(e);
-    });
+    // Promise.all([isCopyright, contributors])
+    // .then((results) => {
+    //     const [$copyright, data] = results;
+    //     const textStr = data.reduce((_arr, curr, index) => {
+    //         const prefix = (index === data.length - 1) ? 'and ' : '';
+    //         _arr.push(prefix + (`<a href="https://github.com/${curr.login}" target="_blank">${curr.name || curr.login}</a>`));
+    //         return _arr;        
+    //     }, []).join(', ');
+    //     const yearStr = `&copy; ${new Date().getFullYear()} `;
+    //     $copyright.html(yearStr + textStr);
+    // })
+    // .catch((e) => {
+    //     console.error(e);
+    // });
     
 })();
