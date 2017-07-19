@@ -34,7 +34,6 @@ app.listen(process.env.PORT || 3002, () => {
 //ONLY do this on prod
 if (process.env.PORT) {
 	heroku.ping({
-		interval: 300000,     // milliseconds, defaults to 30 minutes
 		silent: false,       // logging (default: false)
 		apps: [{
 			name: 'inform-r-us', // heroku app name - required
