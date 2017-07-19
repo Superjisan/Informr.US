@@ -1,8 +1,11 @@
 {
-  "name": "inform-ru",
+  "name": "informr.us",
   "version": "0.0.1",
   "description": "An application that allows people to inform themselves of their state legislators in a fun way",
   "main": "app.js",
+  "engines": {
+    "node": "7.10.1"
+  },
   "scripts": {
     "test": "npm test",
     "start": "nodemon app"
