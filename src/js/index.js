@@ -241,12 +241,12 @@ const generateLegislatorForState = data => {
 	const html = `
 	<div class="panel panel-default mt10">
 		<div class="panel-body row">
-			<div class="legislator-img-col col-xs-12 col-sm-12 text-center">
+			<div class="legislator-img-col col-xs-12 col-sm-6 text-center">
 				<a href="#" class="thumbnail">
 					<img class="leg-img" src="${data.photo_url}" alt="state_rep_image"/>
 				</a>
 			</div>
-			<div class="col-xs-12 col-sm-12">
+			<div class="col-xs-12 col-sm-6">
 				<p class="text-center legislator-name">
 					<a href="${data.url}" target="_blank" >${data.full_name}</a>
 				</p>
