@@ -1,5 +1,6 @@
 $(document).ready(() => {
 	$('#findButton').click(setPinOnMap);
+	$('#findRepGoogleCivics').click(getGCivicsRepresentation);
 
 	if (!("geolocation" in navigator)) {
 		$('#findLocationLeg').addClass('hidden');
@@ -55,6 +56,12 @@ const resetResults = () => {
 
 const resetAddressFields = () => {
 	jqueryFieldSelectors.forEach(field => $(field).val(''));
+}
+
+const getGCivicsForAddress = address => {
+	$.get(`/address-lookup?address=${address}`, data => {
+		console.log('data', data);
+	});
 }
 
 const getGeocodeForAddress = address => {
@@ -278,3 +285,10 @@ const setPinOnMap = () => {
 		getGeocodeForAddress(address);
 	}
 };
+
+const getGCivicsRepresentation = () => {
+	const address = validateAddress();
+	if (address) {
+		getGCivicsForAddress(address);
+	}
+}

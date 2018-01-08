@@ -1,7 +1,10 @@
 if (!process.env.OPEN_STATES_API_KEY) {
 	require('dotenv').config();
 }
+const googleCivicsApiKey = process.env.GOOGLE_CIVICS_API_KEY;
 
+const Promise = require('promise');
+const rp = require('request-promise');
 const express = require('express');
 const heroku = require('heroku-ping');
 
@@ -25,6 +28,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/geolookup/:lat/:lon', geolookup);
+
+app.get('/address-lookup', (req, res) => {
+	const {query} = req;
+	// console.log('address', req);
+
+	rp(`https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${query.address}`)
+		.then(data => {
+			console.log('data', data);
+			res.send(data);
+		})
+		.catch(err => res.status(400).send(err));
+});
 
 app.listen(process.env.PORT || 3002, () => {
 	/* eslint-disable no-console */
