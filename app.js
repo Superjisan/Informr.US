@@ -32,8 +32,11 @@ app.get('/geolookup/:lat/:lon', geolookup);
 app.get('/address-lookup', (req, res) => {
 	const {query} = req;
 	// console.log('address', req);
-
-	rp(`https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${query.address}`)
+	const options = {
+		uri: `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${query.address}`,
+		json: true
+	}
+	rp(options)
 		.then(data => {
 			console.log('data', data);
 			res.send(data);
