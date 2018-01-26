@@ -17,6 +17,7 @@ $(document).ready(() => {
 				};
 				renderMapWithLocation(location);
 				getReps(location);
+				getRepsGCivicsForLocation(location);
 			});
 		});
 	}
@@ -39,7 +40,6 @@ const validateAddress = () => {
 
 	if (hasError) {
 		$('.address-error').removeClass('hidden');
-		throw new Error('address not properly defined');
 	} else {
 		$('.address-error').addClass('hidden');
 
@@ -50,6 +50,7 @@ const validateAddress = () => {
 
 const resetResults = () => {
 	resetAddressFields();
+	$('.row.results').empty();
 	$('.state-legislators-panels').empty();
 	$('.congress-legislators-panels').empty();
 };
@@ -58,11 +59,75 @@ const resetAddressFields = () => {
 	jqueryFieldSelectors.forEach(field => $(field).val(''));
 }
 
+generateForOfficials = (officials) => {
+	let html = ''
+	officials.forEach(official => {
+		let imgHtml = ``;
+		if(official.photoUrl) {
+			imgHtml = `<div class="legislator-img-col col-xs-12 col-sm-6 text-center">
+				<a href="#" class="thumbnail">
+					<img class="leg-img" src="${official.photoUrl}" alt="state_rep_image"/>
+				</a>
+			</div>`
+		}
+		let nameHtml = `${official.name}`
+		if (!_.isEmpty(official.urls)) {
+			nameHtml = `<a href="${official.urls[0]}" target="_blank" >${official.name}</a>`
+		}
+		html += `
+		<div class="panel panel-default mt10">
+			<div class="panel-body row">
+				${imgHtml}
+				<div class="col-xs-12 col-sm-6">
+					<p class="text-center legislator-name">
+						${nameHtml}
+					</p>
+					<p class="text-center legislator-party">
+						<strong>Party:</strong> ${_.upperFirst(official.party)}
+					</p>
+				</div>
+			</div>
+		</div>
+		`
+	})
+	return html;
+}
+
+generateForOffices = division => {
+	const {offices, name} = division;
+	let html = ``;
+	offices.forEach(office => {
+		let officeTitle = ''
+		if(office.name !== division.name) {
+			officeTitle = `<h4>${office.name}</h4>`
+		}
+		let officialsHtml = generateForOfficials(office.officials);
+		let officeHtml = `${officeTitle}${officialsHtml}`
+		html += officeHtml
+	})
+	return html
+}
+
+const generateForDivision = division => {
+	const officesHtml = generateForOffices(division);
+	return `<div 
+		class="col-xs-12 col-sm-12 cui-panels">
+			<h3>${division.name}</h3>
+			${officesHtml}
+	</div>`
+}
+
 const getGCivicsForAddress = address => {
+	resetResults();
 	$.get(`/address-lookup?address=${address}`, data => {
 		console.log('data', data);
+		data.forEach(division => {
+			$('.row.results').append(generateForDivision(division))
+		})
 	});
 }
+
+
 
 const getGeocodeForAddress = address => {
 	resetResults();
@@ -73,6 +138,15 @@ const getGeocodeForAddress = address => {
 		getReps(location);
 	});
 };
+
+const getRepsGCivicsForLocation = location => {
+	resetResults();
+	const {lat, lng} = location
+	const latlng = `${lat},${lng}`;
+	$.get(`/address-lookup?latlng=${latlng}`, data => {
+		console.log('data', data);
+	});
+}
 
 const getReps = location => {
 	$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
@@ -113,12 +187,12 @@ const getPartyFull = partyAbbv => {
 
 const generatePhoneForCongress = data => {
 	const phone = data.phone;
-    const repTitle = _.upperFirst(data.chamber) === 'Senate' ? 'Senator' : 'Representative';
+	const repTitle = _.upperFirst(data.chamber) === 'Senate' ? 'Senator' : 'Representative';
 	return `<p class="text-center legislator-phone">
 		<a class="btn btn-default btn-block" href="tel:${phone.replace(/-/g, '')}">
-            <i class="fa fa-phone"></i>
-            Call ${repTitle} ${data.last_name}
-        </a>
+			<i class="fa fa-phone"></i>
+			Call ${repTitle} ${data.last_name}
+		</a>
 	</p>`;
 };
 
@@ -194,9 +268,9 @@ const generatePhoneNumbersForStateLeg = data => {
 		distOfficePhone ? `
 			<p class="text-center legislator-district-phone">
 				<a class="btn btn-default btn-block" href="tel:${distOfficePhone.replace(/-/g, '')}">
-                    <i class="fa fa-phone"></i>
-                    Call District Office: ${distOfficePhone}
-                </a>
+					<i class="fa fa-phone"></i>
+					Call District Office: ${distOfficePhone}
+				</a>
 			</p>` : ''
 	}`;
 
@@ -204,9 +278,9 @@ const generatePhoneNumbersForStateLeg = data => {
 		capOfficePhone ? `
 			<p class="text-center legislator-capitol-phone">
 				<a class="btn btn-default btn-block" href="tel:${capOfficePhone.replace(/-/g, '')}">
-                    <i class="fa fa-phone"></i>
-                    Call Capitol Office ${capOfficePhone}
-                </a>
+					<i class="fa fa-phone"></i>
+					Call Capitol Office ${capOfficePhone}
+				</a>
 			</p>` : ''
 	}`;
 
@@ -270,7 +344,7 @@ const generateLegislatorForState = data => {
 				<p class="text-center legislator-chamber">
 					<strong>District:</strong> ${data.district}
 				</p>
-                ${generateAddressForStateLeg(data)}
+				${generateAddressForStateLeg(data)}
 				${generatePhoneNumbersForStateLeg(data)}
 			</div>
 		</div>
@@ -289,6 +363,7 @@ const setPinOnMap = () => {
 const getGCivicsRepresentation = () => {
 	const address = validateAddress();
 	if (address) {
+		renderMap(address);
 		getGCivicsForAddress(address);
 	}
 }

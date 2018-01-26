@@ -9,6 +9,7 @@ const express = require('express');
 const heroku = require('heroku-ping');
 
 const geolookup = require('./server/controllers/geolookup.js');
+const googleCivicsLookup = require('./server/controllers/google-civics.js');
 
 var app = express();
 //Redirect to https site
@@ -29,20 +30,7 @@ app.get('/', (req, res) => {
 
 app.get('/geolookup/:lat/:lon', geolookup);
 
-app.get('/address-lookup', (req, res) => {
-	const {query} = req;
-	// console.log('address', req);
-	const options = {
-		uri: `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${query.address}`,
-		json: true
-	}
-	rp(options)
-		.then(data => {
-			console.log('data', data);
-			res.send(data);
-		})
-		.catch(err => res.status(400).send(err));
-});
+app.get('/address-lookup', googleCivicsLookup);
 
 app.listen(process.env.PORT || 3002, () => {
 	/* eslint-disable no-console */
