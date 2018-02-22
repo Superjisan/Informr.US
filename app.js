@@ -31,13 +31,3 @@ app.listen(process.env.PORT || 3002, () => {
 	console.log(`Server started at ${process.env.PORT || 3002}`);
 });
 
-//ONLY do this on prod
-if (process.env.PORT) {
-	heroku.ping({
-		silent: false,       // logging (default: false)
-		apps: [{
-			name: 'inform-r-us', // heroku app name - required
-			secure: true      // requires https (defaults: false)
-		}]
-	});
-}
