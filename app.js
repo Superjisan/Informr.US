@@ -3,8 +3,6 @@ if (!process.env.OPEN_STATES_API_KEY) {
 }
 
 const express = require('express');
-const heroku = require('heroku-ping');
-
 const geolookup = require('./server/controllers/geolookup.js');
 
 var app = express();
