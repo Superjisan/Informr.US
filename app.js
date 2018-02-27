@@ -7,14 +7,14 @@ const geolookup = require('./server/controllers/geolookup.js');
 
 var app = express();
 //Redirect to https site
-// app.use(function(req,res,next) {
-// 	if (process.env.PORT && req.headers['x-forwarded-proto'] !== 'https') {
-// 		//needed for heroku redirects
-// 		res.redirect('https://informr.us'+req.url);
-// 	} else {
-// 		next();
-// 	}
-// });
+app.use(function(req,res,next) {
+	if (process.env.PORT && req.headers['x-forwarded-proto'] !== 'https') {
+		//needed for heroku redirects
+		res.redirect('https://informr.us'+req.url);
+	} else {
+		next();
+	}
+});
 app.use(express.static('src'));
 app.use(express.static('public'));
 
