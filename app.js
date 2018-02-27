@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.get('/geolookup/:lat/:lon', geolookup);
 
-app.get('/.well-known/pki-validation/', (req, res) => {
+app.get('/.well-known/pki-validation/0F975AAC46CD6429AE68EB23773140E5.txt', (req, res) => {
 	res.sendFile(__dirname + '/src/0F975AAC46CD6429AE68EB23773140E5.txt')
 })
 
