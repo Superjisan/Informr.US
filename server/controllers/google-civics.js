@@ -7,22 +7,25 @@ const rp = require('request-promise');
 const requestToGCivics = (options, res) => {
 	rp(options)
 		.then(data => {
+
 			//go through data.divisions
 			const result = [];
 			for (let key in data.divisions) {
 
 				data.divisions[key].offices = [];
 				let officeIndices = data.divisions[key].officeIndices;
-				for(let i = 0; i < officeIndices.length; i++) {
-					let officeIndex = data.divisions[key].officeIndices[i];
-					let office = data.offices[officeIndex]
-					let officialIndexes = office.officialIndices;
-					data.divisions[key].offices.push(office);
-					data.divisions[key].offices[i].officials = []
-					for(let j = 0; j < officialIndexes.length; j++) {
-						let officialIndex = officialIndexes[j];
-						let official = data.officials[officialIndex];
-						data.divisions[key].offices[i].officials.push(official);
+				if(!_.isEmpty(officeIndices)) {
+					for(let i = 0; i < officeIndices.length; i++) {
+						let officeIndex = data.divisions[key].officeIndices[i];
+						let office = data.offices[officeIndex]
+						let officialIndexes = office.officialIndices;
+						data.divisions[key].offices.push(office);
+						data.divisions[key].offices[i].officials = []
+						for(let j = 0; j < officialIndexes.length; j++) {
+							let officialIndex = officialIndexes[j];
+							let official = data.officials[officialIndex];
+							data.divisions[key].offices[i].officials.push(official);
+						}
 					}
 				}
 				result.push(data.divisions[key]);
@@ -30,7 +33,10 @@ const requestToGCivics = (options, res) => {
 
 			res.send(result.reverse());
 		})
-		.catch(err => res.status(400).send(err));
+		.catch(err => {
+			console.error(err);
+			res.status(400).send(err)
+		});
 }
 
 
