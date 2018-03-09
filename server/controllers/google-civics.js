@@ -46,22 +46,26 @@ module.exports = (req, res) => {
 	if(!googleCivicsApiKey) return res.status(400).send('Google civics api key not set');
 	if (query.latlng) {
 		//make request to geocode api
-		const geocodeOptions = {
-			uri: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${query.latlng}&key=${googleGeocodeApiKey}`,
-			json: true
+		if(!googleGeocodeApiKey) {
+			return res.status(400).send('Google geocode api key not set');
+		} else {
+			const geocodeOptions = {
+				uri: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${query.latlng}&key=${googleGeocodeApiKey}`,
+				json: true
+			}
+			rp(geocodeOptions)
+				.then(data => {
+					const address = data.results[0].formatted_address;
+					const options = {
+						uri: `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${address}`,
+						json: true
+					}
+					requestToGCivics(options, res);
+				})
+				.catch(err => {
+					res.status(400).send(err)
+				})
 		}
-		rp(geocodeOptions)
-			.then(data => {
-				const address = data.results[0].formatted_address;
-				const options = {
-					uri: `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${address}`,
-					json: true
-				}
-				requestToGCivics(options, res);
-			})
-			.catch(err => {
-				res.status(400).send(err)
-			})
 	} else if(query.address) {
 		const options = {
 			uri: `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleCivicsApiKey}&address=${query.address}`,
