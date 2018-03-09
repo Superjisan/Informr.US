@@ -43,7 +43,7 @@ const requestToGCivics = (options, res) => {
 
 module.exports = (req, res) => {
 	const {query} = req;
-	if(!googleCivicsApiKey) return res.status(400).send({message: 'google civics api key not set'});
+	if(!googleCivicsApiKey) return res.status(400).send('Google civics api key not set');
 	if (query.latlng) {
 		//make request to geocode api
 		const geocodeOptions = {
@@ -69,6 +69,6 @@ module.exports = (req, res) => {
 		}
 		requestToGCivics(options, res);
 	} else {
-		res.status(400).send({message: 'params not correct'});
+		res.status(400).send('params not correct');
 	}	
 }
