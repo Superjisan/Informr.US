@@ -211,6 +211,7 @@
     display: block;
     -webkit-box-flex: 2;
     flex-grow: 2;
+    z-index: 2;
 }
 
 .cui-text-rule:after {

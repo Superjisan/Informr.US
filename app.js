@@ -1,9 +1,13 @@
 if (!process.env.OPEN_STATES_API_KEY) {
 	require('dotenv').config();
 }
+const googleCivicsApiKey = process.env.GOOGLE_CIVICS_API_KEY;
 
+const Promise = require('promise');
+const rp = require('request-promise');
 const express = require('express');
 const geolookup = require('./server/controllers/geolookup.js');
+const googleCivicsLookup = require('./server/controllers/google-civics.js');
 
 var app = express();
 //Redirect to https site
@@ -23,6 +27,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/geolookup/:lat/:lon', geolookup);
+
+app.get('/address-lookup', googleCivicsLookup);
 
 app.listen(process.env.PORT || 3002, () => {
 	/* eslint-disable no-console */
