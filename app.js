@@ -2,13 +2,18 @@ if (!process.env.GOOGLE_CIVICS_API_KEY) {
 	require('dotenv').config();
 }
 
+const _ = require("lodash");
 const express = require('express');
 const googleCivicsLookup = require('./server/controllers/google-civics.js');
+let PLATFORMSH_CONFIG = null;
+if (process.env.PLATFORM_PROJECT) {
+	PLATFORMSH_CONFIG = require("platformsh").config();
+}
 
 var app = express();
 //Redirect to https site
 app.use(function (req, res, next) {
-	if (process.env.PORT && req.headers['x-forwarded-proto'] !== 'https') {
+	if (!PLATFORMSH_CONFIG && process.env.PORT && req.headers['x-forwarded-proto'] !== 'https') {
 		//needed for heroku redirects
 		res.redirect('https://informr.us' + req.url);
 	} else {
@@ -23,9 +28,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/address-lookup', googleCivicsLookup);
-
-app.listen(process.env.PORT || 3002, () => {
-	/* eslint-disable no-console */
-	console.log(`Server started at ${process.env.PORT || 3002}`);
+const PORT = process.env.PORT || _.get(PLATFORMSH_CONFIG, 'port') || 3002;
+app.listen(PORT, () => {
+	console.log(`Server started at ${PORT}`);
 });
 
