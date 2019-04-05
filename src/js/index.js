@@ -4,7 +4,7 @@ $(document).ready(() => {
 	if (!("geolocation" in navigator)) {
 		$('#findLocationLeg').addClass('hidden');
 	} else {
-	/* geolocation IS available */
+		/* geolocation IS available */
 		$('#findLocationLeg').click(() => {
 			resetResults();
 			$('.loading-img').removeClass('hidden');
@@ -61,10 +61,11 @@ generateForOfficials = officials => {
 	let html = ''
 	officials.forEach(official => {
 		let imgHtml = ``;
-		if(official.photoUrl) {
+		if (official.photoUrl) {
+			const photoUrl = official.photoUrl.indexOf("http://") === -1 ? official.photoUrl : `//images.weserv.nl/?url=${official.photoUrl.split("http://")[1]}`
 			imgHtml = `<div class="legislator-img-col col-xs-12 col-sm-6 text-center">
 				<a href="#" class="thumbnail">
-					<img class="leg-img" src="${official.photoUrl}" alt="state_rep_image"/>
+					<img class="leg-img" src="${photoUrl}" alt="state_rep_image"/>
 				</a>
 			</div>`
 		}
@@ -105,11 +106,11 @@ generateForOfficials = officials => {
 }
 
 generateForOffices = division => {
-	const {offices, name} = division;
+	const { offices, name } = division;
 	let html = ``;
 	offices.forEach(office => {
 		let officeTitle = ''
-		if(office.name !== division.name) {
+		if (office.name !== division.name) {
 			officeTitle = `<h4>${office.name}</h4>`
 		}
 		let officialsHtml = generateForOfficials(office.officials);
@@ -141,7 +142,7 @@ const getGCivicsForAddress = address => {
 
 const getGCivicsForLocation = location => {
 	resetResults();
-	const {lat, lng} = location
+	const { lat, lng } = location
 	const latlng = `${lat},${lng}`;
 	$.get(`/address-lookup?latlng=${latlng}`, data => {
 		data.forEach(division => {
@@ -153,33 +154,33 @@ const getGCivicsForLocation = location => {
 
 const getReps = location => {
 	$.get(`/geolookup/${location.lat}&/${location.lng}`, data => {
-			const stateLegislators = _.filter(data, legislator => {
-				return legislator.level === 'state' || !legislator.state_name;
-			});
-			const congressLegislators =  _.filter(data, legislator => {
-				return legislator.level !== 'state' && legislator.state_name;
-			});
-
-
-			$('.state-legislators-panels').append('<h3>State Legislators</h4>');
-			stateLegislators.forEach(leg => {
-				$('.state-legislators-panels').append(generateLegislatorForState(leg));
-			});
-
-			$('.congress-legislators-panels').append('<h3>Congressional Legislators</h4>')
-			congressLegislators.forEach(leg => {
-				$('.congress-legislators-panels').append(generateLegislatorsForCongress(leg));
-			});
-
-			$(document).scrollTop($('.state-legislators-panels').offset().top);
+		const stateLegislators = _.filter(data, legislator => {
+			return legislator.level === 'state' || !legislator.state_name;
 		});
+		const congressLegislators = _.filter(data, legislator => {
+			return legislator.level !== 'state' && legislator.state_name;
+		});
+
+
+		$('.state-legislators-panels').append('<h3>State Legislators</h4>');
+		stateLegislators.forEach(leg => {
+			$('.state-legislators-panels').append(generateLegislatorForState(leg));
+		});
+
+		$('.congress-legislators-panels').append('<h3>Congressional Legislators</h4>')
+		congressLegislators.forEach(leg => {
+			$('.congress-legislators-panels').append(generateLegislatorsForCongress(leg));
+		});
+
+		$(document).scrollTop($('.state-legislators-panels').offset().top);
+	});
 };
 
 const generatePhoneNumbersForStateLeg = data => {
 	let html = '';
 	const districtOffice = _.find(data.offices, office => office.type === 'district');
 	let distOfficePhone;
-	if(districtOffice) {
+	if (districtOffice) {
 		distOfficePhone = districtOffice.phone;
 	}
 
@@ -197,7 +198,7 @@ const generatePhoneNumbersForStateLeg = data => {
 					Call District Office: ${distOfficePhone}
 				</a>
 			</p>` : ''
-	}`;
+		}`;
 
 	const capitolOfficeHtml = `${
 		capOfficePhone ? `
@@ -207,7 +208,7 @@ const generatePhoneNumbersForStateLeg = data => {
 					Call Capitol Office ${capOfficePhone}
 				</a>
 			</p>` : ''
-	}`;
+		}`;
 
 	html = `${distOfficeHtml}${capitolOfficeHtml}`;
 
