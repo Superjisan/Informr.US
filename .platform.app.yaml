@@ -1,0 +1,15 @@
+name: node
+type: nodejs:10
+
+hooks:
+  build: |
+    npm install
+
+web:
+  commands:
+    start: "node app.js"
+
+mounts:
+  "/run": "shared:files/run"
+
+disk: 512

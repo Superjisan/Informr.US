@@ -4,7 +4,7 @@ You can see a demo of this app [here](https://www.informr.us)
 
 To run this app, you'll need:
 
- * node.js (recommended version: 6.9.2), npm (recommended version 3.10.9)
+ * node.js (recommended version: 10.13.0), npm (recommended version 6.9.0)
 
 You can clone this app using git
 

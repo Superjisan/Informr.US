@@ -1,10 +1,10 @@
 {
   "name": "informr.us",
   "version": "0.0.1",
-  "description": "An application that allows people to inform themselves of their state legislators in a fun way",
+  "description": "An application that allows people to inform themselves of their representatives",
   "main": "app.js",
   "engines": {
-    "node": "8.1.4"
+    "node": "10.13.0"
   },
   "scripts": {
     "test": "npm test",
@@ -14,33 +14,18 @@
     "type": "git",
     "url": "git+https://github.com/Superjisan/InformRU.git"
   },
-  "keywords": [
-    "states",
-    "node",
-    "react",
-    "sunlight",
-    "geocoding",
-    "quiz"
-  ],
   "author": "Jisan Zaman",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Superjisan/InformRU/issues"
   },
   "homepage": "https://github.com/Superjisan/InformRU#readme",
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-plugin-lodash": "^3.2.11",
-    "babel-preset-es2015": "^6.18.0",
-    "eslint": "^3.12.2",
-    "eslint-plugin-react": "^6.8.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "lodash": "^4.17.2",
     "nodemon": "^1.11.0",
-    "openstates": "0.0.1",
     "promise": "^7.1.1",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"
