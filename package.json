@@ -4,7 +4,7 @@
   "description": "An application that allows people to inform themselves of their representatives",
   "main": "app.js",
   "engines": {
-    "node": "10.13.0"
+    "node": "14.15.4"
   },
   "scripts": {
     "test": "npm test",

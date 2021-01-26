@@ -17,7 +17,8 @@ To run this app, you'll need to set a `.env` file at the root directory of this 
 Example `.env` file
 
 ```javascript
-OPEN_STATES_API_KEY={YOUR_KEY_HERE}
+GOOGLE_CIVICS_API_KEY={YOUR_KEY_HERE}
+GOOGLE_GEOCODE_API_KEY={YOUR_KEY_HERE}
 ```
 
 After setting up an env file, ensure that you run
