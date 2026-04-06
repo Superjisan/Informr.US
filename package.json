@@ -1,10 +1,10 @@
 {
   "name": "informr.us",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An application that allows people to inform themselves of their representatives",
   "main": "app.js",
   "engines": {
-    "node": "14.15.4"
+    "node": "24.14.1"
   },
   "scripts": {
     "test": "npm test",
@@ -20,15 +20,11 @@
     "url": "https://github.com/Superjisan/InformRU/issues"
   },
   "homepage": "https://github.com/Superjisan/InformRU#readme",
-  "devDependencies": {},
   "dependencies": {
     "dotenv": "^2.0.0",
-    "express": "^4.14.0",
+    "express": "^5.1.0",
     "lodash": ">=4.17.21",
     "nodemon": "^1.11.0",
-    "platformsh": "^1.0.0",
-    "promise": "^7.1.1",
-    "request": "^2.79.0",
-    "request-promise": "^4.1.1"
+    "platformsh": "^1.0.0"
   }
 }
